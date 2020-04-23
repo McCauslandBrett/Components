@@ -49,9 +49,7 @@ export default function App(props) {
     return null;
   } else {
     return (
-
-    <DrawerNavigator/>
-
+      <DrawerNavigator/>
     );
   }
 }
