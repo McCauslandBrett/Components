@@ -1,3 +1,4 @@
+import CardsScreen from '../screens/CardsScreen.js'; 
 import ContainersScreen from '../screens/ContainersScreen.js'; 
 import * as React from 'react';
 import { Button, View } from 'react-native';
@@ -32,6 +33,7 @@ export default function DrawerNavigator() {
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
         <Drawer.Screen name="Containers" component={ContainersScreen} /> 
+        <Drawer.Screen name="Cards" component={CardsScreen} /> 
       </Drawer.Navigator>
     </NavigationContainer>
   );

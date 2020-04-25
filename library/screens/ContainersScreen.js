@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import { View, Text, StyleSheet,SafeAreaView,
-         ScrollView,TextInput,TouchableOpacity,
+import { Dimensions,View, Text, StyleSheet,SafeAreaView,
+         ScrollView,TextInput,TouchableOpacity,ImageBackground,Image
         } from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
-
+import { Block,Card,theme } from 'galio-framework';
+const { height, width } = Dimensions.get('screen');
 class ContainersScreen extends Component{
 state = { foo: false,}
 render(){
   return(
-    <SafeAreaView>
-    <ScrollView>
-    <Text style={{fontSize:25,marginBottom:15}}> Flex Layouts </Text>
+  <Block flex center safe style={{width: width}}>
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.margins}>
+    <Text style={{fontSize:25,marginBottom:15,fontWeight:'700'}}> Layouts </Text>
 
     <View>
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
@@ -25,12 +26,22 @@ render(){
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
     </View>
 
+    <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 1 galio Block row  </Text>
+    <Block row>
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+    </Block>
+
+
     <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 2 ( justifyContent: "space-between") </Text>
     <View style={{flexDirection:'row',justifyContent: "space-between"}}>
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
     </View>
+
+
 
     <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 3 ( justifyContent: "flex-end" ) </Text>
     <View style={{flexDirection:'row',justifyContent: "flex-end"}}>
@@ -46,6 +57,13 @@ render(){
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
     </View>
 
+    <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 4 galio Block row middle </Text>
+    <Block row middle >
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+      <Block style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+    </Block>
+
     <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 5 ( justifyContent:'space-evenly' )</Text>
     <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
@@ -53,8 +71,19 @@ render(){
       <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
     </View>
 
+    <Text style={{fontSize:20,marginBottom:15,marginTop:15}}> Row 6 ( justifyContent:'space-evenly' ) </Text>
+    <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
+      <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+      <View style = {{height:100,width:100,backgroundColor:randomRgb()}}/>
+    </View>
+
+
+
+
+
     </ScrollView>
-    </SafeAreaView>
+
+  </Block>
     );
   }
 }
@@ -65,11 +94,18 @@ const randomRgb = () =>{
 
   return `rgb(${red},${green},${blue})`;
 };
-const localstyles = StyleSheet.create({
-  containerRow:
-  {
-    flexDirection:'row',
-  },
-
+const styles = StyleSheet.create({
+ margins: {
+  width: width - theme.SIZES.BASE * 2,
+  paddingVertical: theme.SIZES.BASE,
+},
+shadow: {
+  shadowColor: theme.COLORS.BLACK,
+  shadowOffset: { width: 0, height: 2 },
+  shadowRadius: 4,
+  shadowOpacity: 0.1,
+  elevation: 2,
+  borderWidth: 0,
+},
 });
 export default ContainersScreen
