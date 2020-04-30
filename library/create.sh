@@ -16,9 +16,10 @@ function CreateHook() {
   touch $1
   cat << EOF > $1
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
+import {Button, Block,theme,Text,Icon } from 'galio-framework';
 
-export const ${2} = () => {
+const ${2} = () => {
   const [foo, setFoo] = useState(30);
   useEffect(() => {
     if (foo >= 42) {
@@ -26,12 +27,14 @@ export const ${2} = () => {
       }
     }, [foo])
    return (
-      <View>
-        <Text>Foo is {foo}.</Text>
+      <Block>
+        <Text> Foo is {foo}.</Text>
         <Button onPress={() => setFoo(foo + 1)} title='Increase Foo!' />
-      </View>
+      </Block>
     )
 }
+const styles = StyleSheet.create({});
+export default ${2};
 EOF
 }
 function CreateClass() {
@@ -39,29 +42,27 @@ function CreateClass() {
   touch $1
   cat << EOF > $1
 import React, {Component} from 'react';
-import { View, Text, StyleSheet,SafeAreaView,
-         ScrollView,TextInput,TouchableOpacity,
+import { StyleSheet,SafeAreaView,Dimensions,
+          ScrollView,TextInput,TouchableOpacity,
         } from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
+import { Card,Block,theme,Text,Button } from 'galio-framework';
+const { height, width } = Dimensions.get('screen');
 
 class ${2} extends Component{
 state = { foo: false,}
 render(){
   return(
-    <View style={localstyles.container}>
+  <Block flex center >
+  <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{  width: width - theme.SIZES.BASE * 2,
+    paddingVertical: theme.SIZES.BASE}}>
       <Text> ${2} </Text>
-    </View>
+   </ScrollView>
+   </Block>
     );
   }
 }
-const localstyles = StyleSheet.create({
-  container:
-  {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
+const styles = StyleSheet.create({});
 export default ${2}
 EOF
 }

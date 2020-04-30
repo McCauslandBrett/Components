@@ -31,6 +31,9 @@ export default function App(props) {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
+
+    'Lato-Bold': require('./assets/fonts/LatoBold.ttf'),
+    "Lato-Regular": require("./assets/fonts/LatoRegular.ttf"),
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         });
       } catch (e) {
